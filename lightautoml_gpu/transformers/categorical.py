@@ -159,7 +159,7 @@ class LabelEncoder(LAMLTransformer):
                 .reset_index()
                 .set_index(i)
             )
-            vals = cnts[cnts[i] > co].index.values
+            vals = cnts[cnts  > co].index.values
             self.dicts[i] = Series(np.arange(vals.shape[0], dtype=np.int32) + 1, index=vals)
 
         return self
