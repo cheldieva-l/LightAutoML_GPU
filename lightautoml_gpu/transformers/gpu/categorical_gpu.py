@@ -120,6 +120,11 @@ class LabelEncoderGPU(LAMLTransformer):
                 .sort_values([i], ascending=[False])
 
             )
+            print('role=',role)
+            print('co=',co)
+            print('cnts=',cnts)
+            print('i=',i)
+            print('subs=',subs)
             ids = (cnts > co)[cnts.columns[0]]
             vals = cnts[ids].index
             self.dicts[i] = cudf.Series(
