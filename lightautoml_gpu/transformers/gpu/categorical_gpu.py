@@ -117,25 +117,9 @@ class LabelEncoderGPU(LAMLTransformer):
                 subs[i]
                 .value_counts(dropna=False)
                 .reset_index()
-                .sort_values([i], ascending=[False])
-
+                .sort_values([i, "index"], ascending=[False, True])
+                .set_index("index")
             )
-
-            global g_role
-            global g_co
-            global g_cnts
-            global g_i
-            global g_subs
-            g_role = role 
-            g_co =  co
-            g_cnts = cnts
-            g_i = i
-            g_subs = subs
-            print('role=',role)
-            print('co=',co)
-            print('cnts=',cnts)
-            print('i=',i)
-            print('subs=',subs)
             ids = (cnts > co)[cnts.columns[0]]
             vals = cnts[ids].index
             self.dicts[i] = cudf.Series(
