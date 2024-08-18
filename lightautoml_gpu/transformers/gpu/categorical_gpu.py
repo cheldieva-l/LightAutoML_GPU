@@ -117,8 +117,7 @@ class LabelEncoderGPU(LAMLTransformer):
                 subs[i]
                 .value_counts(dropna=False)
                 .reset_index()
-                .sort_values([i, "index"], ascending=[False, True])
-                .set_index("index")
+                .set_index(i)
             )
             ids = (cnts > co)[cnts.columns[0]]
             vals = cnts[ids].index
@@ -126,6 +125,7 @@ class LabelEncoderGPU(LAMLTransformer):
                 cp.arange(vals.shape[0], dtype=cp.int32) + 1, index=vals
             )
         return self
+
 
     def _fit_daskcudf(self, dataset: GpuNumericalDataset):
 
