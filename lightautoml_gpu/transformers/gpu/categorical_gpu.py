@@ -117,8 +117,8 @@ class LabelEncoderGPU(LAMLTransformer):
                 subs[i]
                 .value_counts(dropna=False)
                 .reset_index()
-                .sort_values([i, "index"], ascending=[False, True])
-                .set_index("index")
+                .sort_values([i], ascending=[False])
+
             )
             ids = (cnts > co)[cnts.columns[0]]
             vals = cnts[ids].index
