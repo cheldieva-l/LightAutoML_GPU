@@ -157,8 +157,7 @@ class LabelEncoder(LAMLTransformer):
                 subs[i]
                 .value_counts(dropna=False)
                 .reset_index()
-                .sort_values([i, "index"], ascending=[False, True])
-                .set_index("index")
+                .set_index(i)
             )
             vals = cnts[cnts[i] > co].index.values
             self.dicts[i] = Series(np.arange(vals.shape[0], dtype=np.int32) + 1, index=vals)
