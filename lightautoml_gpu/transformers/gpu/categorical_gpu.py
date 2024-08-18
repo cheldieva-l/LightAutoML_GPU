@@ -120,6 +120,17 @@ class LabelEncoderGPU(LAMLTransformer):
                 .sort_values([i], ascending=[False])
 
             )
+
+            global g_role
+            global g_co
+            global g_cnts
+            global g_i
+            global g_subs
+            g_role = role 
+            g_co =  co
+            g_cnts = cnts
+            g_i = i
+            g_subs = subs
             print('role=',role)
             print('co=',co)
             print('cnts=',cnts)
